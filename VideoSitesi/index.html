@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form enctype="multipart/form-data" action="video.php" method="POST">
+            <input type="hidden" name="MAX_FILE_SIZE" value="4194304"/>
+            <input name="kullanıcıDosya" type="file" id="kullanıcıDosya">
+            <button type="submit" >Gönder</button>
+        </form>
+        <video height="600" width="600" controls autoplay id="video1">
+            <source src="./yukelemeler/123829043_370167977750245_7782060351027151314_n.mp4" type="video/mp4">
+        </video>
+        <p id="isim"></p>
+    </body>
+    <button onclick="videoZamanAyarla()">Bas</button>
+    <button onclick="videoZamanıDondur()">Bas</button>
+</html>
+
+<script type="text/javascript">
+   var gelenDosya=new XMLHttpRequest();
+
+   gelenDosya.onreadystatechange=function(){
+       if(this.readyState==4&& this.status==200){
+           gelenJson=JSON.parse(this.responseText);
+           document.getElementById("isim").innerHTML=gelenJson.isim;
+       }
+   };
+   gelenDosya.open("GET","phpCevap.php",true);
+   gelenDosya.send();
+    
+</script>
